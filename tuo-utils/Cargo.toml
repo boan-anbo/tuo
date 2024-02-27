@@ -1,11 +1,10 @@
 [package]
-name = "tuo-parts"
+name = "tuo-utils"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tuo-core = { path = "../tuo-core" }
-
-async-trait = { workspace = true }
+thiserror = {workspace = true}
+mime_guess2 = {workspace = true}
