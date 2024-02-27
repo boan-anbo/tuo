@@ -4,13 +4,13 @@ use async_trait::async_trait;
 use tracing::debug;
 
 use tuo_utils::fs::file_type::{get_mime_type_str, get_mime_type_str_from_extension};
+use crate::core::source::document::Document;
 
-use crate::entities::document::Document;
-use crate::error::TuoCoreError;
+use crate::error::TuoError;
 
 #[async_trait]
 pub trait ReaderTrait: Sync + Send {
-    async fn read(&self, file_path: &str) -> Result<Document, TuoCoreError>;
+    async fn read(&self, file_path: &str) -> Result<Document, TuoError>;
 }
 
 /// Trait for providing readers for different mime types
@@ -19,10 +19,10 @@ pub trait ReaderTrait: Sync + Send {
 #[async_trait]
 pub trait ReaderProviderTrait: Sync + Send {
     /// Read a file with the given mime type using the readers associated with the mime type
-    async fn read(&self, file_path: &str, mime_type: &str) -> Result<Document, TuoCoreError> {
+    async fn read(&self, file_path: &str, mime_type: &str) -> Result<Document, TuoError> {
         let reader = self.get_reader_by_mime_type(mime_type)?;
         match reader {
-            None => Err(TuoCoreError::ReaderNoProvider(mime_type.to_string())),
+            None => Err(TuoError::ReaderNoProvider(mime_type.to_string())),
             Some(reader) => {
                 let document = reader
                     .read(file_path)
@@ -31,13 +31,13 @@ pub trait ReaderProviderTrait: Sync + Send {
             }
         }
     }
-    fn can_read_ext(&self, extension: &str) -> Result<bool, TuoCoreError> {
+    fn can_read_ext(&self, extension: &str) -> Result<bool, TuoError> {
         let mime_type_str = get_mime_type_str_from_extension(extension)?;
         self.can_read_mime(&mime_type_str)
     }
 
-    fn get_reader_by_mime_type(&self, mime_type: &str) -> Result<Option<Arc<dyn ReaderTrait>>, TuoCoreError>;
-    fn can_read_mime(&self, mime_type: &str) -> Result<bool, TuoCoreError> {
+    fn get_reader_by_mime_type(&self, mime_type: &str) -> Result<Option<Arc<dyn ReaderTrait>>, TuoError>;
+    fn can_read_mime(&self, mime_type: &str) -> Result<bool, TuoError> {
         let reader = self.get_reader_by_mime_type(mime_type)?;
         Ok(reader.is_some())
     }
@@ -46,7 +46,7 @@ pub trait ReaderProviderTrait: Sync + Send {
 #[async_trait]
 pub trait UniversalReaderTrait: Sync + Send {
     fn get_reader_providers(&self) -> Arc<dyn ReaderProviderTrait>;
-    async fn read(&self, file_path: &str) -> Result<Document, TuoCoreError> {
+    async fn read(&self, file_path: &str) -> Result<Document, TuoError> {
         let reader_providers = self.get_reader_providers();
         let mime_type = get_mime_type_str(file_path)?;
         let document = reader_providers.read(file_path, &mime_type).await?;
@@ -61,7 +61,7 @@ pub trait UniversalReaderTrait: Sync + Send {
 pub trait UniversalDirectoryReaderTrait {
     fn get_universal_reader(&self) -> Arc<dyn UniversalReaderTrait>;
     fn get_directory_file_paths(&self, directory_path: &str) -> Vec<String>;
-    async fn read(&self, directory_path: &str) -> Result<Vec<Document>, TuoCoreError> {
+    async fn read(&self, directory_path: &str) -> Result<Vec<Document>, TuoError> {
         let universal_reader = self.get_universal_reader();
         let file_paths = self.get_directory_file_paths(directory_path);
         // filter out files that cannot be read by the universal readers
