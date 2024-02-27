@@ -1,13 +1,31 @@
 [package]
 name = "tuo"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
+
+
+
+[dependencies]
+tuo-core = { path = "tuo-core" }
+tuo-parts = { path = "tuo-parts" }
+tuo-utils = { path = "tuo-utils" }
 
 [workspace]
 members = [
     "tuo-core",
-    "tuo-parts"
+    "tuo-parts",
+    "tuo-utils",
+    "tuo-examples/simple_rag"
 ]
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
+
+[features]
+
+[workspace.dependencies]
+async-trait = "0.1.77"
+thiserror = "1.0.57"
+mime_guess2 = "2.0.5"
+tracing = "0.1.40"
+uuid = { version = "1.7.0", features = ["v4"] }
+tokio = { version = "1.0.2", features = ["rt", "macros"] }
+
