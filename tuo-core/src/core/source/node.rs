@@ -34,7 +34,7 @@ pub struct Node {
     pub section_id: Uuid,
     pub content_data: ContentData,
     pub content_type: ContentType,
-    /// # The index of the node in the document.
+    /// # The index of the node in the source.
     ///
     /// - The index is 0-based.
     ///
