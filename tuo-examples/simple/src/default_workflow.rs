@@ -1,4 +1,4 @@
-use custom_entities::store::CustomStore;
+
 use tuo::tuo_core::core::indexing::index::{Index, IndexFromFolderTrait, IndexTrait};
 use tuo::tuo_core::error::TuoError;
 use tuo::tuo_core::extraction::reader::UniFolderReaderTrait;
@@ -9,7 +9,7 @@ use tuo::tuo_parts::readers::uni_folder_reader::UniFolderReader;
 use tuo::tuo_parts::stores::store::Store;
 
 pub async fn default_workflow_complete() -> Result<QueryResult, TuoError> {
-    /// Extraction
+    // Extraction
     let source_folder_name = "source_folder_name";
     let folder_reader = UniFolderReader::default();
     let read_result = folder_reader.read_folder(source_folder_name).await?;

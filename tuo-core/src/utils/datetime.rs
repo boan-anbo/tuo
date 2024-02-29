@@ -1,4 +1,4 @@
-use chrono::{DateTime, TimeZone, Utc};
+use chrono::{DateTime, Utc};
 use crate::error::TuoError;
 use crate::types::date_time::TuoDateTime;
 

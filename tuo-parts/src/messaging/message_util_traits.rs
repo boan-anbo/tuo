@@ -1,4 +1,4 @@
-use async_openai::types::CreateChatCompletionRequest;
+
 use tuo_core::core::messaging::message::Message;
 use tuo_core::error::TuoError;
 
