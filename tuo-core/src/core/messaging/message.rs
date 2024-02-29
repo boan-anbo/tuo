@@ -1,5 +1,5 @@
 use uuid::Uuid;
-use crate::core::generation::generated_content::Content;
+use crate::core::messaging::content::Content;
 use crate::utils::datetime::now;
 
 #[derive(Default, Debug)]

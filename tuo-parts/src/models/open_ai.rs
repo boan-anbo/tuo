@@ -71,7 +71,7 @@ pub fn map_openai_api_error(api_error: &OpenAIError) -> OpenAIApiError {
                 "insufficient_quota" => OpenAIApiError::InsufficientQuota,
                 "engine_overloaded" => OpenAIApiError::EngineOverloaded,
                 "server_error" => OpenAIApiError::ServerError,
-                _ => OpenAIApiError::Unknown(api_error.clone().to_string())
+                _ => OpenAIApiError::Unknown(api_error.to_string())
             }
         }
         _ => OpenAIApiError::Unknown(api_error.to_string())

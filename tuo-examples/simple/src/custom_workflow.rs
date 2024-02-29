@@ -8,7 +8,7 @@ use tuo::tuo_core::query::engine::{QueryEngineFromFolderTrait, QueryEngineTrait,
 use tuo::tuo_core::storage::store::StoreTrait;
 
 pub async fn custom_workflow_complete() -> Result<QueryResult, TuoError> {
-    /// Extraction
+    // Extraction
     let source_folder_name = "source_folder_name";
     let folder_reader = CustomUniFolderReader::default();
     let read_result = folder_reader.read_folder(source_folder_name).await?;

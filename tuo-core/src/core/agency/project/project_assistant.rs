@@ -85,7 +85,7 @@ impl ProjectAssistantTrait for ProjectAssistant {
     }
 
 
-    async fn run_project(&self, mut project: Project) -> Result<ProjectResult, TuoError> {
+    async fn run_project(&self, project: Project) -> Result<ProjectResult, TuoError> {
         // check everything is ready.
         // run the preparation stage
         let prepped_project = self.run_prep_stage(project).await?;
