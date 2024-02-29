@@ -10,3 +10,12 @@ tuo-core = { path = "../tuo-core" }
 uuid = { workspace = true }
 
 async-trait = { workspace = true }
+tokio = { workspace = true }
+async-openai = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+test-log =  { workspace = true }
+
+[dev-dependencies]
+tokio-test = { workspace = true }
+dotenv = { workspace = true }

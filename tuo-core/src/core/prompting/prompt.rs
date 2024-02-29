@@ -1,6 +1,7 @@
 use uuid::Uuid;
 
-use crate::types::date_time::{now, TuoDateTime};
+use crate::types::date_time::TuoDateTime;
+use crate::utils::datetime::now;
 
 #[derive(Debug)]
 pub enum PromptAuthor {

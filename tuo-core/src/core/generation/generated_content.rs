@@ -1,12 +1,13 @@
 use crate::embedding::embeddings::Embeddings;
 use crate::types::date_time::TuoDateTime;
 
-#[derive(Default)]
-pub struct GeneratedContent {
-    pub content: String,
+#[derive(Default, Debug)]
+pub struct Content {
+    pub text: String,
     // The llm used to generate the summary
-    pub model: String,
+    pub is_generated: bool,
+    pub model: Option<String>,
     /// generated_at timestamp
-    pub generated_at: TuoDateTime,
+    pub created_at: TuoDateTime,
     pub embeddings: Option<Embeddings>,
 }

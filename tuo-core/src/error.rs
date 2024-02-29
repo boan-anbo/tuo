@@ -15,5 +15,9 @@ pub enum TuoError {
     UniReaderHasNoReaderProvider,
     #[error("No Universal Reader for Index found.\nSolution: Either provide a Universal Reader to your implementation of the IndexFromFolderTrait, or override the `from_folder` method of the default implementation of the IndexFromFolderTrait to avoid using a Universal Reader.")]
     IndexHasNoUniReader,
+    #[error("Model Error: {0}")]
+    ModelError(String),
+    #[error("Util Error: {0}")]
+    UtilError(String)
 }
 

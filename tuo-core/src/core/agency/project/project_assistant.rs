@@ -9,7 +9,7 @@ use crate::core::agency::project::project_director::ProjectDirectorTrait;
 use crate::core::messaging::memory::Memory;
 use crate::core::messaging::message::Message;
 use crate::error::TuoError;
-use crate::model::model::ModelTrait;
+use crate::model::model::CompletionModelTrait;
 
 /// Project assistant trait
 ///
@@ -49,7 +49,19 @@ pub struct ProjectAssistant {
 
 
 #[async_trait]
-impl ModelTrait for ProjectAssistant {}
+impl CompletionModelTrait for ProjectAssistant {
+    async fn complete(&self, message: Message) -> Result<Message, TuoError> {
+        todo!()
+    }
+
+    async fn is_healthy(&self) -> Result<bool, TuoError> {
+        todo!()
+    }
+
+    async fn get_model_name(&self) -> Result<String, TuoError> {
+        todo!()
+    }
+}
 
 #[async_trait]
 impl ProfileTrait for ProjectAssistant {
@@ -94,13 +106,13 @@ impl ProjectAssistantTrait for ProjectAssistant {
         let assistant_msg_to_director = assistant.write().await.draft(director_prompt)?;
 
         // send the message to the director
-        let director_initial_message = director.write().await.send(assistant_msg_to_director).await?;
+        let director_initial_message = director.write().await.complete(assistant_msg_to_director).await?;
 
         // check if the director is ready to iterate
         let is_ready = self.is_director_ready_to_iterate(director_initial_message).await;
 
         if !is_ready {
-            /// TODO: this is temporary because we decides on a retry mechanism with possible backoff design.
+            // TODO: this is temporary because we decides on a retry mechanism with possible backoff design.
             Err(TuoError::GenericError("Director is not ready to iterate".to_string()))
         } else {
             // if the director is ready, then we can start the iteration stage.
@@ -117,7 +129,7 @@ impl ProjectAssistantTrait for ProjectAssistant {
 
         for i in 0..max_iterations {
             let message_to_director = assistant.write().await.draft("ITERATE".to_string())?;
-            let director_response = director.write().await.send(message_to_director).await?;
+            let director_response = director.write().await.complete(message_to_director).await?;
             let is_ready_to_terminate_early = self.is_director_ready_to_conclude(director_response).await;
             if is_ready_to_terminate_early {
                 break;
@@ -135,7 +147,7 @@ impl ProjectAssistantTrait for ProjectAssistant {
 
         for i in 0..max_conclusion_iterations {
             let message_to_director = assistant.write().await.draft("CONCLUDE".to_string())?;
-            let director_response = director.write().await.send(message_to_director).await?;
+            let director_response = director.write().await.complete(message_to_director).await?;
             let is_ready_to_terminate_early = self.is_final_results_ready(director_response).await;
             if is_ready_to_terminate_early {
                 break;
