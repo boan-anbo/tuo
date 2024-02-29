@@ -19,6 +19,14 @@ members = [
     "tuo-examples/custom-entities"
 ]
 
+default-members = [
+    "tuo-core",
+    "tuo-parts",
+    "tuo-utils",
+    "tuo-examples/simple",
+    "tuo-examples/custom-entities"
+]
+
 
 [features]
 
@@ -32,4 +40,9 @@ tokio = { version = "1.0.2", features = ["rt", "macros", "sync"] }
 chrono = "0.4.34"
 regex = "1.10.3"
 once_cell = "1.19.0"
+async-openai = "0.18.3"
+lancedb = "0.4.11"
+tokio-test = "0.4.3"
+dotenv = "0.15.0"
+test-log = { version = "0.2.15", features = ["trace"] }
 

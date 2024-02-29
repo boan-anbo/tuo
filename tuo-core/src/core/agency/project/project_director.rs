@@ -2,8 +2,9 @@ use async_trait::async_trait;
 
 use crate::core::agency::agent::AgentTrait;
 use crate::core::agency::profile::ProfileTrait;
+use crate::core::messaging::message::Message;
 use crate::error::TuoError;
-use crate::model::model::ModelTrait;
+use crate::model::model::CompletionModelTrait;
 
 pub trait ProjectDirectorTrait: AgentTrait {
     fn append_to_final_result(&mut self, content: &str) -> Result<(), TuoError>;
@@ -27,7 +28,20 @@ impl ProfileTrait for ProjectDirector {
 impl AgentTrait for ProjectDirector {}
 
 
-impl ModelTrait for ProjectDirector {}
+#[async_trait]
+impl CompletionModelTrait for ProjectDirector {
+    async fn complete(&self, message: Message) -> Result<Message, TuoError> {
+        todo!()
+    }
+
+    async fn is_healthy(&self) -> Result<bool, TuoError> {
+        todo!()
+    }
+
+    async fn get_model_name(&self) -> Result<String, TuoError> {
+        todo!()
+    }
+}
 
 impl ProjectDirectorTrait for ProjectDirector {
     fn append_to_final_result(&mut self, content: &str) -> Result<(), TuoError> {

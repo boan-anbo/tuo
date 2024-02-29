@@ -1,5 +1,5 @@
 use uuid::Uuid;
-use crate::core::generation::generated_content::GeneratedContent;
+use crate::core::generation::generated_content::Content;
 
 pub enum TableType {
     /// ## Why separate this from Tabular
@@ -96,5 +96,5 @@ pub struct Document {
     pub source: String,
 
     /// The summary of the source
-    pub summary: Option<GeneratedContent>,
+    pub summary: Option<Content>,
 }

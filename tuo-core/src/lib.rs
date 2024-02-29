@@ -16,3 +16,4 @@ pub mod utility;
 pub mod types;
 pub mod shared;
 pub mod model;
+pub mod utils;

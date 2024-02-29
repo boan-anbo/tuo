@@ -1,5 +1,5 @@
 use uuid::Uuid;
-use crate::core::generation::generated_content::GeneratedContent;
+use crate::core::generation::generated_content::Content;
 
 pub struct Section {
     id: Uuid,
@@ -53,5 +53,5 @@ pub struct Section {
     /// - The indexing is 0-based.
     pub end_char_index: Option<i32>,
     
-    pub summary: Option<GeneratedContent>,
+    pub summary: Option<Content>,
 }

@@ -4,7 +4,7 @@ use crate::core::agency::profile::ProfileTrait;
 use crate::core::messaging::memory::{Memory, MemoryTrait};
 use crate::core::messaging::message::Message;
 use crate::error::TuoError;
-use crate::model::model::ModelTrait;
+use crate::model::model::CompletionModelTrait;
 
 pub struct Agenda {}
 
@@ -12,7 +12,7 @@ pub struct Accomplishment {}
 
 
 #[async_trait]
-pub trait AgentTrait: Sync + Send + ModelTrait + ProfileTrait {
+pub trait AgentTrait: Sync + Send + CompletionModelTrait + ProfileTrait {
     /// Get the agent_role_prompt
     fn agent_role_prompt(&self) -> Result<String, TuoError> {
         Ok("I am an agent. This is a default message.".to_string())
