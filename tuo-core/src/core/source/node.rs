@@ -1,5 +1,7 @@
 use uuid::Uuid;
 
+use crate::embedding::embeddings::Embeddings;
+
 pub enum ContentType {
     Text,
     Image,
@@ -34,21 +36,22 @@ pub struct Node {
     pub section_id: Uuid,
     pub content_data: ContentData,
     pub content_type: ContentType,
-    /// # The index of the node in the source.
+    pub embeddings: Option<Embeddings>,
+    /// # The indexing of the node in the source.
     ///
-    /// - The index is 0-based.
+    /// - The indexing is 0-based.
     ///
-    /// - The previous node's index is the current node's `index - 1`.
-    /// - The next node's index is the current node's `index + 1`.
+    /// - The previous node's indexing is the current node's `indexing - 1`.
+    /// - The next node's indexing is the current node's `indexing + 1`.
     pub index: i32,
 
-    /// # The start character index of the node in the section.
+    /// # The start character indexing of the node in the section.
     ///
-    /// - The index is 0-based.
+    /// - The indexing is 0-based.
     pub start_char_index: i32,
 
-    /// # The end character index of the node in the section.
+    /// # The end character indexing of the node in the section.
     ///
-    /// - The index is 0-based.
+    /// - The indexing is 0-based.
     pub end_char_index: i32,
 }

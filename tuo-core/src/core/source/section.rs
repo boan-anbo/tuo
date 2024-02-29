@@ -7,7 +7,7 @@ pub struct Section {
     name: String,
     /// # The section number in the source.
     ///
-    /// - The index is 0-based.
+    /// - The indexing is 0-based.
     ///
     /// - If there is no pagination, this value is always 0.
     ///
@@ -20,7 +20,7 @@ pub struct Section {
 
     /// # Section level in the source.
     ///
-    /// - The index is 0-based.
+    /// - The indexing is 0-based.
     ///
     /// - The highest is 0.
     ///
@@ -43,14 +43,14 @@ pub struct Section {
     /// But in implementation, it's possible that we do not give section content after we gave the section content to the nodes in order to save memory, for example.
     pub content: Option<String>,
 
-    /// # The start character index of the node in the source.
+    /// # The start character indexing of the node in the source.
     ///
-    /// - The index is 0-based.
+    /// - The indexing is 0-based.
     pub start_char_index: Option<i32>,
 
-    /// # The end character index of the node in the source.
+    /// # The end character indexing of the node in the source.
     ///
-    /// - The index is 0-based.
+    /// - The indexing is 0-based.
     pub end_char_index: Option<i32>,
     
     pub summary: Option<GeneratedContent>,

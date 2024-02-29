@@ -8,6 +8,6 @@ use crate::query::engine::QueryResult;
 ///
 /// Examiner is the executor of the query, responsible for sending the query to the model and returning the result.
 #[async_trait]
-pub trait Examiner {
+pub trait QueryExecutor {
     async fn examine(&self, prompt: Prompt) -> Result<QueryResult, TuoError>;
 }
