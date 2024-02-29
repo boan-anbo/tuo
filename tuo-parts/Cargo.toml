@@ -7,5 +7,6 @@ edition = "2021"
 
 [dependencies]
 tuo-core = { path = "../tuo-core" }
+uuid = { workspace = true }
 
 async-trait = { workspace = true }

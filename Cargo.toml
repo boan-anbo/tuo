@@ -15,7 +15,8 @@ members = [
     "tuo-core",
     "tuo-parts",
     "tuo-utils",
-    "tuo-examples/simple_rag"
+    "tuo-examples/simple",
+    "tuo-examples/custom-entities"
 ]
 
 
@@ -27,5 +28,8 @@ thiserror = "1.0.57"
 mime_guess2 = "2.0.5"
 tracing = "0.1.40"
 uuid = { version = "1.7.0", features = ["v4"] }
-tokio = { version = "1.0.2", features = ["rt", "macros"] }
+tokio = { version = "1.0.2", features = ["rt", "macros", "sync"] }
+chrono = "0.4.34"
+regex = "1.10.3"
+once_cell = "1.19.0"
 

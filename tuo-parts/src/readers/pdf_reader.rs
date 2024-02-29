@@ -5,11 +5,11 @@ use tuo_core::extraction::reader::ReaderTrait;
 
 
 #[derive(Default)]
-pub struct TuoPDFReader {}
+pub struct PDFReader {}
 
 
 #[async_trait]
-impl ReaderTrait for TuoPDFReader {
+impl ReaderTrait for PDFReader {
     async fn read(&self, file_path: &str) -> Result<Document, TuoError> {
         Ok(Document::default())
     }
