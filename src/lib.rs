@@ -8,3 +8,4 @@
 pub use tuo_core;
 pub use tuo_parts;
 pub use tuo_utils;
+pub use tuo_shared;
