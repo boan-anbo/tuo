@@ -1,0 +1,45 @@
+[package]
+name = "tuo-parts"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["model_openai", "lancedb"]
+model_openai = ["async-openai"]
+db_lancedb = ["lancedb"]
+
+[dependencies]
+tuo-core.workspace = true
+tuo-utils.workspace = true
+tuo-shared.workspace = true
+
+uuid = { workspace = true }
+
+futures.workspace = true
+
+async-trait = { workspace = true }
+tokio = { workspace = true }
+async-openai = { workspace = true, optional = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+test-log = { workspace = true }
+typed-builder.workspace = true
+strum.workspace = true
+field_types.workspace = true
+dyn-clone.workspace = true
+
+# db
+lancedb = { workspace = true, optional = true }
+arrow-schema.workspace = true
+arrow-array.workspace = true
+arrow2_convert.workspace = true
+
+[dev-dependencies]
+tokio-test = { workspace = true }
+test-log = { workspace = true, features = ["trace"] }
+dotenv = { workspace = true }
+
+[build-dependencies]
+tuo-utils.workspace = true
