@@ -1,3 +1,5 @@
+#[cfg(feature = "model_ollama")]
+pub mod ollama;
 
 #[cfg(feature = "model_openai")]
-pub mod open_ai;
+pub mod openai;

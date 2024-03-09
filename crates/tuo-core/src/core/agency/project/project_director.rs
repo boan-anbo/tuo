@@ -34,9 +34,6 @@ impl CompletionModelTrait for ProjectDirector {
         todo!()
     }
 
-    async fn is_healthy(&self) -> TuoResult<bool> {
-        todo!()
-    }
 
     async fn get_model_name(&self) -> TuoResult<String> {
         todo!()

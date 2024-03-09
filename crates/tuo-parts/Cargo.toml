@@ -6,8 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-default = ["model_openai", "lancedb"]
+default = ["model_openai", "ollama-rs", "lancedb"]
 model_openai = ["async-openai"]
+model_ollama = ["ollama-rs"]
 db_lancedb = ["lancedb"]
 
 [dependencies]
@@ -21,7 +22,6 @@ futures.workspace = true
 
 async-trait = { workspace = true }
 tokio = { workspace = true }
-async-openai = { workspace = true, optional = true }
 thiserror = { workspace = true }
 tracing = { workspace = true }
 test-log = { workspace = true }
@@ -30,7 +30,13 @@ strum.workspace = true
 field_types.workspace = true
 dyn-clone.workspace = true
 
+# models
+## openai
+async-openai = { workspace = true, optional = true }
+## ollama
+ollama-rs = { workspace = true, optional = true }
 # db
+## lancedb
 lancedb = { workspace = true, optional = true }
 arrow-schema.workspace = true
 arrow-array.workspace = true
@@ -40,6 +46,7 @@ arrow2_convert.workspace = true
 tokio-test = { workspace = true }
 test-log = { workspace = true, features = ["trace"] }
 dotenv = { workspace = true }
+mockall.workspace = true
 
 [build-dependencies]
 tuo-utils.workspace = true
