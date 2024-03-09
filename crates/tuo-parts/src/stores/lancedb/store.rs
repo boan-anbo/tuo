@@ -52,7 +52,7 @@ impl StoreTrait for LanceDb {
         embedder: Box<dyn EmbedderTrait>,
     ) -> TuoResult<Self> {
         let arc_embedder = Arc::new(embedder);
-        let model_metadata = arc_embedder.get_embedding_model();
+        let model_metadata = arc_embedder.get_model_metadata();
         let model_id = model_metadata.id;
         // construct store_metadata
         // construct store uri path
@@ -93,7 +93,7 @@ impl StoreTrait for LanceDb {
     where
         Self: Sized,
     {
-        let model = embedder.get_embedding_model();
+        let model = embedder.get_model_metadata();
         let store_metadata = LanceDb::load_store_metadata(uri, model.dimensions).await?;
         Ok(LanceDb::builder()
             .store_metadata(store_metadata)
@@ -300,8 +300,8 @@ mod tests {
     use tuo_core::parsing::document_parser::ParsedDocument;
     use tuo_core::utility::token::{count_tokens, TokenUtility};
     use tuo_utils::testing::get_random_test_temp_folder;
+    use crate::models::openai::models::OpenAIEmbeddingModels;
 
-    use crate::models::open_ai::OpenAIEmbeddingModels;
 
     use super::*;
 
