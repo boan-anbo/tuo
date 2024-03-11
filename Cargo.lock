@@ -2594,6 +2594,7 @@ dependencies = [
  "log",
  "num-traits",
  "object_store",
+ "reqwest",
  "serde",
  "serde_json",
  "snafu",
@@ -3658,6 +3659,7 @@ version = "0.11.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c6920094eb85afde5e4a138be3f2de8bbdf28000f0029e72c45025a56b042251"
 dependencies = [
+ "async-compression",
  "base64",
  "bytes",
  "encoding_rs",
