@@ -61,11 +61,11 @@ field_types = "1.1.0"
 dyn-clone = "1.0.17"
 
 ## Parts
-lancedb = { version = "0.4.12" }
-async-openai = "0.19.0"
+lancedb = "0.4.15"
+async-openai = "0.20.0"
 ollama-rs = "0.1.7"
-arrow-schema = "50.0.0"
-arrow-array = "50.0.0"
+arrow-schema = "51.0.0"
+arrow-array = "51.0.0"
 arrow2_convert = "0.5.0"
 backoff = { version = "0.4.0", features = ["tokio"] }
 
